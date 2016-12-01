@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model TODO_APP1.DTO.DTOUser
+<form asp-controller="Users" asp-action="CreateNewUser" method="post" class="form-horizontal">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Form Name</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Your full name</label>
+            <div class="col-md-4">
+                <input id="UserFullName" name="UserFullName" type="text" placeholder="" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Choose a user name</label>
+            <div class="col-md-4">
+                <input id="UserName" name="UserName" type="text" placeholder="" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Email</label>
+            <div class="col-md-4">
+                <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Password</label>
+            <div class="col-md-4">
+                <input id="password" name="password" type="text" placeholder="" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+    </fieldset>
+    <button type="submit" class="btn-default">Register</button>
+</form>

@@ -13,6 +13,8 @@ using TODO_APP1.Data;
 using TODO_APP1.Models;
 using TODO_APP1.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace TODO_APP1
 {
@@ -38,6 +40,9 @@ namespace TODO_APP1
             Configuration = builder.Build();
         }
 
+        
+
+
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -62,6 +67,8 @@ namespace TODO_APP1
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +78,12 @@ namespace TODO_APP1
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                LoginPath = "/Users/Login",
+                AuthenticationScheme = "Cookies",
+                AutomaticChallenge = true     
+            });
 
             if (env.IsDevelopment())
             {
