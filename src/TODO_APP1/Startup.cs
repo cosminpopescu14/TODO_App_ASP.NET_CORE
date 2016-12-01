@@ -78,10 +78,13 @@ namespace TODO_APP1
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
+
+            //setting up cookie middleware
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 LoginPath = "/Users/Login",
-                AuthenticationScheme = "Cookies",
+                AuthenticationScheme = "MyCookieMiddlewareInstance-TODOAPP1122016",
+                AutomaticAuthenticate = true,
                 AutomaticChallenge = true     
             });
 

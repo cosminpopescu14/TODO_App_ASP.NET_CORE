@@ -9,7 +9,7 @@ namespace TODO_APP1.Controllers
 {
     public class TodoController : Controller
     {
-        //[Authorize]
+        [Authorize]
         public IActionResult Index()
         {
             return View();

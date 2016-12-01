@@ -231,6 +231,7 @@
 "C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODP_App_ASP.NET_CORE-master\src\TODO_APP1\Data\Migrations\00000000000000_CreateIdentitySchema.cs"
 "C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODP_App_ASP.NET_CORE-master\src\TODO_APP1\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs"
 "C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODP_App_ASP.NET_CORE-master\src\TODO_APP1\Data\Migrations\ApplicationDbContextModelSnapshot.cs"
+"C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODP_App_ASP.NET_CORE-master\src\TODO_APP1\DTO\DTOLogin.cs"
 "C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODP_App_ASP.NET_CORE-master\src\TODO_APP1\DTO\DTOUser.cs"
 "C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODP_App_ASP.NET_CORE-master\src\TODO_APP1\Migrations\20161130202409_30112016.cs"
 "C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODP_App_ASP.NET_CORE-master\src\TODO_APP1\Migrations\20161130202409_30112016.Designer.cs"
