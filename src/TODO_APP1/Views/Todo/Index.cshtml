@@ -5,6 +5,65 @@
 }
 
 
+
+
+<link rel="stylesheet" href="~/css/Todo.css" />
+<script src="~/lib/jquery/dist/jquery.js" ></script>
+<div class="task-list">
+    <h3>Your tasks</h3>
+
+    <div class="todo-task">
+        <div id="task-header"></div>
+        <div id="task-date"></div>
+        <div id="task-description"></div>
+    </div>
+</div>
+<input type="button" onclick="GetTodos();" value="press to see todo"/>
+<!--<div class="task-list" id="inProgress">
+    <h3>In Progress</h3>
+</div>
+
+<div class="task-list" id="completed">
+    <h3>Completed</h3>
+</div>-->
+
+<div class="task-list">
+    <h3>Add a task</h3>
+    <form asp-controller = "Todo" asp-action="AddTodo" method="post">
+        <input type="text" placeholder="Title" name="Title" /> <br>
+        <textarea placeholder="Descrtipion" name="Description"></textarea><br>
+        <input type="text" placeholder="Start Date (dd/mm/yyyy)" name="Start"/><br>
+        <input type="text" placeholder="Due Date (dd/mm/yyyy)" name="End"/><br>
+        <button type="submit" class="btn btn-lg" id="submitBtn">Add your todo !</button>
+    </form>
+
+    
+
+    <!--<div id="delete-div">Drag Here to Delete</div>-->
+</div>
+
+
+<script>
+    function GetTodos() {
+        $.ajax({
+            url: 'http://localhost:58193/Todo/GetTodos',
+            error: function () {
+                alert("couldn't fetch any todo");
+
+            },
+            contentType: 'json',
+            success: function (data) {
+                var title = JSON.stringify(data[0]["title"]);
+                var description = JSON.stringify(data[0]["description"]);
+                var start = JSON.stringify(data[0]["startDate"]);
+                var end = JSON.stringify(data[0]["endDate"]);
+                //console.log(title, description, start);
+                document.getElementById("task-header").innerHTML = "Title " + title;
+                document.getElementById("task-description").innerHTML = "Description " + description;
+                document.getElementById("task-date").innerHTML = start + "<br> " + end;
+            }
+        });
+    }
+</script>
+
 @Html.ActionLink("Logout", "LogOff", "Users")
-
-
