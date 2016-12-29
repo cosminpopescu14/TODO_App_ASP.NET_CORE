@@ -12,7 +12,7 @@ namespace TODO_APP1.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-MI5NR5S;Database=TODO_App;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=COSMinpC;Database=TODO_App;Trusted_Connection=True;");
         }
 
         /*public partial class TODOContext : DbContext//configuratia este facuta in Startup.cs

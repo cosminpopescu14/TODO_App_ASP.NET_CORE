@@ -6,25 +6,18 @@
 @{
     ViewBag.Title = "Todos";
 }
-
+<script src="~/lib/webcomponentsjs/webcomponents.js"></script>
+<link rel="import" href="~/lib/paper-card/paper-card.html" />
 
 <h2>Blogs</h2>
 
-<table class="table">
-    <tr>
-        <th>Title</th>
-        <th>Description</th>
-    </tr>
-
     @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-        </tr>
+    {       
+        <paper-card heading ="Todo">
+            <div class="card-content">@Html.DisplayFor(modelItem => item.Title)</div>
+            <div class="card-content">@Html.DisplayFor(modelItem => item.Description)</div>
+            <div class="card-actions">
+                <paper-button>Done !</paper-button>
+            </div>
+       </paper-card>       
     }
-</table>

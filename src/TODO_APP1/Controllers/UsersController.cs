@@ -102,7 +102,6 @@ namespace TODO_APP1.Controllers
                 }
                 catch (Exception ex)
                 {
-
                      ModelState.AddModelError("2", "no user found" + ex);
                 }
             }

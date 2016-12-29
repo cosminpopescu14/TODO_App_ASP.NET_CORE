@@ -48,7 +48,7 @@ namespace TODO_APP1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var dbconnection = @"Server=DESKTOP-MI5NR5S;Database=TODO_App;Trusted_Connection=True;"; //string de conectare la bd
+            var dbconnection = @"Server=COSMINPC;Database=TODO_App;Trusted_Connection=True;"; //string de conectare la bd
             services.AddDbContext<TODO_AppContext>(options => options.UseSqlServer(dbconnection));
 
             // Add framework services.

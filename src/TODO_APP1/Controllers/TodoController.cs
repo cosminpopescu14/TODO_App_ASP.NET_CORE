@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using TODO_APP1.DTO;
 using TODO_APP1.Models;
 
+
 namespace TODO_APP1.Controllers
 {
     public class TodoController : Controller
@@ -15,8 +16,30 @@ namespace TODO_APP1.Controllers
         private TODO_AppContext todoContext = new TODO_AppContext();
 
         [Authorize]
+        [HttpGet]
         public IActionResult Index()
         {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var todos = todoContext.Todos.Select(todo => new Todos {
+                        Title = todo.Title,
+                        Description = todo.Description,
+                        StartDate = todo.StartDate,
+                        EndDate = todo.EndDate
+                    }).ToList();
+
+                    return View(todos.ToList());
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+                ModelState.AddModelError("1", "error ocurred :(");
+
             return View();
         }
 
@@ -70,10 +93,12 @@ namespace TODO_APP1.Controllers
                 }
                 catch (Exception ex)
                 {
-
                     throw ex;
                 }
             }
+            else
+                ModelState.AddModelError("1", "error ocurred :(");
+
             return RedirectToAction("Index");
         }
     }

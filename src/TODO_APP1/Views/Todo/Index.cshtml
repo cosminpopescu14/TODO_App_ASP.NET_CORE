@@ -4,12 +4,19 @@
 @{
 }
 
+@model IEnumerable<TODO_APP1.Models.Todos>
 
-
-
+<head>
 <link rel="stylesheet" href="~/css/Todo.css" />
 <script src="~/lib/jquery/dist/jquery.js" ></script>
-<div class="task-list">
+
+<!--import pentru componetele Polymer-->
+<script src="~/lib/webcomponentsjs/webcomponents.js"></script>
+<link rel="import" href="~/lib/paper-card/paper-card.html" />
+<link rel="import" href="~/lib/paper-button/paper-button.html" />
+<link rel="import" href="~/lib/polymer/polymer.html" />
+</head>
+<!--<div class="task-list">
     <h3>Your tasks</h3>
 
     <div class="todo-task">
@@ -18,14 +25,7 @@
         <div id="task-description"></div>
     </div>
 </div>
-<input type="button" onclick="GetTodos();" value="press to see todo"/>
-<!--<div class="task-list" id="inProgress">
-    <h3>In Progress</h3>
-</div>
-
-<div class="task-list" id="completed">
-    <h3>Completed</h3>
-</div>-->
+<input type="button" onclick="GetTodos();" value="press to see todo"/>-->
 
 <div class="task-list">
     <h3>Add a task</h3>
@@ -36,12 +36,20 @@
         <input type="text" placeholder="Due Date (dd/mm/yyyy)" name="End"/><br>
         <button type="submit" class="btn btn-lg" id="submitBtn">Add your todo !</button>
     </form>
-
-    
-
-    <!--<div id="delete-div">Drag Here to Delete</div>-->
 </div>
+@foreach (var item in Model)
+{   
+    <paper-card heading="Todo">
+        <div class="card-content">@Html.DisplayFor(modelItem => item.Title)</div>
+        <div class="card-content">@Html.DisplayFor(modelItem => item.Description)</div>
+        <div class="card-content">@Html.DisplayFor(modelItem => item.StartDate)</div>
+        <div class="card-content">@Html.DisplayFor(modelItem => item.EndDate)</div>
 
+        <div class="card-actions">
+            <paper-button>Done !</paper-button>
+        </div>
+    </paper-card>
+}
 
 <script>
     function GetTodos() {
@@ -65,5 +73,4 @@
         });
     }
 </script>
-
-@Html.ActionLink("Logout", "LogOff", "Users")
+<paper-button raised>@Html.ActionLink("Logout", "LogOff", "Users")</paper-button>
