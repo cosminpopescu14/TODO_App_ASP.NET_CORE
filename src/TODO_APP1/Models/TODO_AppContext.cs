@@ -9,6 +9,8 @@ namespace TODO_APP1.Models
         public virtual DbSet<Todos> Todos { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
+        public virtual DbSet<UsersTodos> UsersTodo { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
@@ -65,6 +67,19 @@ namespace TODO_APP1.Models
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("fk_todoId");
             });
+
+            modelBuilder.Entity<UsersTodos>().HasKey(key => new { key.UserId, key.TodoId });
+
+            modelBuilder.Entity<UsersTodos>()
+                .HasOne(ut => ut.User)
+                .WithMany(u => u.UsersTodos)
+                .HasForeignKey(ut => ut.UserId);
+
+            modelBuilder.Entity<UsersTodos>()
+                .HasOne(ut => ut.Todo)
+                .WithMany(t => t.UsersTodos)
+                .HasForeignKey(ut => ut.TodoId);
+
         }
     }
 }

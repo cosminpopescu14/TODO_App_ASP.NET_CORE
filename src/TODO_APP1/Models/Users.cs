@@ -13,5 +13,6 @@ namespace TODO_APP1.Models
         public int? TodoId { get; set; }
 
         public virtual Todos Todo { get; set; }
+        public List<UsersTodos> UsersTodos { get; set; }
     }
 }

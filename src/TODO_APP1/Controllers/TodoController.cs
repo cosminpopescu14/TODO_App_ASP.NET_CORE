@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 
 using TODO_APP1.DTO;
 using TODO_APP1.Models;
-
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore;
 
 namespace TODO_APP1.Controllers
 {
@@ -23,12 +24,22 @@ namespace TODO_APP1.Controllers
             {
                 try
                 {
-                    var todos = todoContext.Todos.Select(todo => new Todos {
+                    /*var todos = todoContext.Todos.Select(todo => new Todos
+                    {
                         Title = todo.Title,
                         Description = todo.Description,
                         StartDate = todo.StartDate,
                         EndDate = todo.EndDate
-                    }).ToList();
+                    });*/
+                    string sqlQuery = @"select t.id, t.Title, t.Description, t.StartDate, t.EndDate
+                                        from TODOS t
+                                        join UsersTodos ut on t.id = ut.TodoId
+                                        join Users u on u.id = ut.UserId
+                                        where u.UserName =  " + "'" + User.Claims.FirstOrDefault().Value + "'";
+
+                    var todos = todoContext.Todos
+                        .FromSql(sqlQuery)
+                        .ToList();
 
                     return View(todos.ToList());
                 }

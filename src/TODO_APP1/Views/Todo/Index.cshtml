@@ -14,7 +14,6 @@
 <script src="~/lib/webcomponentsjs/webcomponents.js"></script>
 <link rel="import" href="~/lib/paper-card/paper-card.html" />
 <link rel="import" href="~/lib/paper-button/paper-button.html" />
-<link rel="import" href="~/lib/polymer/polymer.html" />
 </head>
 <!--<div class="task-list">
     <h3>Your tasks</h3>
@@ -26,7 +25,7 @@
     </div>
 </div>
 <input type="button" onclick="GetTodos();" value="press to see todo"/>-->
-
+<p style="margin-top: 25px"> Welcome back: @User.Claims.FirstOrDefault().Value !</p>
 <div class="task-list">
     <h3>Add a task</h3>
     <form asp-controller = "Todo" asp-action="AddTodo" method="post">
@@ -37,9 +36,24 @@
         <button type="submit" class="btn btn-lg" id="submitBtn">Add your todo !</button>
     </form>
 </div>
+<style is="custom-style" include="demo-pages-shared-styles">
+    paper-card{
+        --paper-card-header-color: #3f51b5;
+        margin: 5px;
+    }
+
+    .card-content{
+        background-color: #3f51b5;
+    }
+    .card-actions{
+        background-color: #3f51b5;
+    }
+</style>
+
+
 @foreach (var item in Model)
 {   
-    <paper-card heading="Todo">
+    <paper-card>
         <div class="card-content">@Html.DisplayFor(modelItem => item.Title)</div>
         <div class="card-content">@Html.DisplayFor(modelItem => item.Description)</div>
         <div class="card-content">@Html.DisplayFor(modelItem => item.StartDate)</div>
@@ -50,7 +64,7 @@
         </div>
     </paper-card>
 }
-
+<br>
 <script>
     function GetTodos() {
         $.ajax({
@@ -73,4 +87,6 @@
         });
     }
 </script>
-<paper-button raised>@Html.ActionLink("Logout", "LogOff", "Users")</paper-button>
+<a href="/Users/LogOff">
+    <paper-button raised>LogOut</paper-button>
+</a>

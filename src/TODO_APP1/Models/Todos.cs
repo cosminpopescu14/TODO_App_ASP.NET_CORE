@@ -17,5 +17,6 @@ namespace TODO_APP1.Models
         public DateTime? EndDate { get; set; }
 
         public virtual ICollection<Users> Users { get; set; }
+        public List<UsersTodos> UsersTodos { get; set; }
     }
 }
