@@ -22,7 +22,7 @@ namespace TODO_APP1.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Popescu Ionut Cosmin";
 
             return View();
         }
