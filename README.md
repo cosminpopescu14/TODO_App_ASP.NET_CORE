@@ -14,4 +14,14 @@ Cum pornesc acesta aplicatie ?<br>
     2.3 dotnet ef database update. Comanda aplica migratia curenta asupra bazei de date. Optional se veriifca daca in baza de date sunt 3         tabele:<br> Users, TODO si UsersTodo.<br>
  3 Se deschide aplicatia si se apasa butonul "Start From Here". <br>
   
-Intrucat bd nu are nimic, se creaza un nou user. Dupa acest lucru noul utilizator se autentifica si creaza un todo
+Intrucat bd nu are nimic, se creaza un nou user. Dupa acest lucru noul utilizator se autentifica si creaza un todo<br>
+Aplicatia este inca in dezvoltare. In tabelul UsersTodos campurile trebuie completate manual
+
+EX:
+UserId=1<br>
+TodoId=1<br>
+--------------<br>
+UserId=1<br>
+TodoId=2<br>
+etc<br>
+Acest lucru va determina ca aplicatia sa afiseze doar todo-urile utilizatorului cu id-ul 1
