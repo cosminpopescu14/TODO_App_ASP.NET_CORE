@@ -5,6 +5,8 @@
 }
 
 @model TODO_APP1.DTO.DTOUser
+
+<div style="margin-top: 25px">
 <form asp-controller="Users" asp-action="CreateNewUser" method="post" class="form-horizontal">
     <fieldset>
 
@@ -48,5 +50,6 @@
         </div>
 
     </fieldset>
-    <button type="submit" class="btn-default">Register</button>
+    <button type="submit" class="btn btn-primary">Register</button>
 </form>
+</div>

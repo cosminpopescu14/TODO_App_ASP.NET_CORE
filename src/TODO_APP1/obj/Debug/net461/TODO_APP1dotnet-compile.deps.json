@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETFramework,Version=v4.6.1/",
-    "signature": "7505fc0cc1d5fd024a050a85c6131e269efae487"
+    "signature": "acdd96da136191eeea774730a5387b62ff85ed9a"
   },
   "compilationOptions": {
     "defines": [
@@ -39,7 +39,8 @@
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.Owin": "3.0.1",
-          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+          "StackifyMiddleware": "2.0.3"
         },
         "compile": {
           "TODO_APP1.exe": {}
@@ -1145,6 +1146,22 @@
           "lib/net45/Remotion.Linq.dll": {}
         }
       },
+      "StackifyMiddleware/2.0.3": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http": "1.0.0",
+          "Microsoft.AspNetCore.Http.Extensions": "1.0.0",
+          "Microsoft.AspNetCore.Mvc": "1.0.1",
+          "Microsoft.Extensions.Configuration": "1.0.0",
+          "System.Diagnostics.DiagnosticSource": "4.3.0",
+          "System.Reactive.Core": "3.0.0",
+          "System.Data": "4.0.0.0",
+          "System.Net.Http": "4.0.0.0",
+          "System.Reflection": "4.0.10.0"
+        },
+        "compile": {
+          "lib/net451/StackifyMiddleware.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "dependencies": {
           "mscorlib": "4.0.0.0"
@@ -1340,6 +1357,19 @@
       "System.ObjectModel/4.0.10.0": {
         "compile": {
           ".NETFramework/v4.6.1/Facades/System.ObjectModel.dll": {}
+        }
+      },
+      "System.Reactive.Core/3.0.0": {
+        "dependencies": {
+          "System.Reactive.Interfaces": "3.0.0"
+        },
+        "compile": {
+          "lib/net46/System.Reactive.Core.dll": {}
+        }
+      },
+      "System.Reactive.Interfaces/3.0.0": {
+        "compile": {
+          "lib/net45/System.Reactive.Interfaces.dll": {}
         }
       },
       "System.Reflection/4.0.10.0": {
@@ -1664,7 +1694,8 @@
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.Owin": "3.0.1",
-          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+          "StackifyMiddleware": "2.0.3"
         },
         "runtime": {
           "TODO_APP1.exe": {}
@@ -2766,6 +2797,22 @@
           "lib/net45/Remotion.Linq.dll": {}
         }
       },
+      "StackifyMiddleware/2.0.3": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http": "1.0.0",
+          "Microsoft.AspNetCore.Http.Extensions": "1.0.0",
+          "Microsoft.AspNetCore.Mvc": "1.0.1",
+          "Microsoft.Extensions.Configuration": "1.0.0",
+          "System.Diagnostics.DiagnosticSource": "4.3.0",
+          "System.Reactive.Core": "3.0.0",
+          "System.Data": "4.0.0.0",
+          "System.Net.Http": "4.0.0.0",
+          "System.Reflection": "4.0.10.0"
+        },
+        "runtime": {
+          "lib/net451/StackifyMiddleware.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "dependencies": {
           "mscorlib": "4.0.0.0"
@@ -2909,6 +2956,19 @@
         }
       },
       "System.ObjectModel/4.0.10.0": {},
+      "System.Reactive.Core/3.0.0": {
+        "dependencies": {
+          "System.Reactive.Interfaces": "3.0.0"
+        },
+        "runtime": {
+          "lib/net46/System.Reactive.Core.dll": {}
+        }
+      },
+      "System.Reactive.Interfaces/3.0.0": {
+        "runtime": {
+          "lib/net45/System.Reactive.Interfaces.dll": {}
+        }
+      },
       "System.Reflection/4.0.10.0": {},
       "System.Reflection.Emit/4.0.0.0": {},
       "System.Reflection.Emit.Lightweight/4.0.0.0": {},
@@ -3596,6 +3656,11 @@
       "serviceable": true,
       "sha512": "sha512-IJn0BqkvwEDpP+2qjvci7n4/a9f7DhKESLWb2/uG4xQh3rTkGTBUz69bI4IivCoKkTFAqjXxYDZw2K/npohjsw=="
     },
+    "StackifyMiddleware/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lMk8wOvGJHhWv/oxINRhHu4u3rHLZvCkwFNnJKJGpm7J+hGxeq6jFDMQ7qOxgIFtGK4ZfwDsIsh3/NpSPvC/Aw=="
+    },
     "System.AppContext/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -3750,6 +3815,16 @@
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
+    },
+    "System.Reactive.Core/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1mnBTTNzTDaKYu2fYA0fcbWmWspwXheV9eFR0ynWd0nFjBwgSW0ZUAxe7dfvU5imv+K9QlfhV+pEKGOlJVZ8+w=="
+    },
+    "System.Reactive.Interfaces/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MuLvWYegIrhvUVe3MRMIBxFGx4kiz0FEzN3TTvhX+m3WmJCi5+OE4J7yPWtZjGGTUh5wysGyaF9thcnCzx/J3w=="
     },
     "System.Reflection/4.0.10.0": {
       "type": "referenceassembly",

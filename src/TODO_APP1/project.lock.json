@@ -1989,6 +1989,28 @@
           "lib/net45/Remotion.Linq.dll": {}
         }
       },
+      "StackifyMiddleware/2.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http": "1.0.0",
+          "Microsoft.AspNetCore.Http.Extensions": "1.0.0",
+          "Microsoft.AspNetCore.Mvc": "1.0.0",
+          "Microsoft.Extensions.Configuration": "1.0.0",
+          "System.Diagnostics.DiagnosticSource": "4.0.0",
+          "System.Reactive.Core": "3.0.0"
+        },
+        "frameworkAssemblies": [
+          "System.Data",
+          "System.Net.Http",
+          "System.Reflection"
+        ],
+        "compile": {
+          "lib/net451/StackifyMiddleware.dll": {}
+        },
+        "runtime": {
+          "lib/net451/StackifyMiddleware.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "frameworkAssemblies": [
@@ -2412,6 +2434,27 @@
         },
         "runtime": {
           "lib/net45/_._": {}
+        }
+      },
+      "System.Reactive.Core/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Reactive.Interfaces": "3.0.0"
+        },
+        "compile": {
+          "lib/net46/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net46/System.Reactive.Core.dll": {}
+        }
+      },
+      "System.Reactive.Interfaces/3.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Reactive.Interfaces.dll": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -4680,6 +4723,17 @@
         "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.xml"
       ]
     },
+    "StackifyMiddleware/2.0.3": {
+      "sha512": "lMk8wOvGJHhWv/oxINRhHu4u3rHLZvCkwFNnJKJGpm7J+hGxeq6jFDMQ7qOxgIFtGK4ZfwDsIsh3/NpSPvC/Aw==",
+      "type": "package",
+      "path": "StackifyMiddleware/2.0.3",
+      "files": [
+        "lib/net451/StackifyMiddleware.dll",
+        "lib/netstandard1.6/StackifyMiddleware.dll",
+        "stackifymiddleware.2.0.3.nupkg.sha512",
+        "stackifymiddleware.nuspec"
+      ]
+    },
     "System.AppContext/4.3.0": {
       "sha512": "fKC+rmaLfeIzUhagxY17Q9siv/sPrjjKcfNg1Ic8IlQkZLipo8ljcaZQu4VtI4Jqbzjc2VTjzGLF6WmsRXAEgA==",
       "type": "package",
@@ -6381,6 +6435,46 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
+      ]
+    },
+    "System.Reactive.Core/3.0.0": {
+      "sha512": "1mnBTTNzTDaKYu2fYA0fcbWmWspwXheV9eFR0ynWd0nFjBwgSW0ZUAxe7dfvU5imv+K9QlfhV+pEKGOlJVZ8+w==",
+      "type": "package",
+      "path": "System.Reactive.Core/3.0.0",
+      "files": [
+        "System.Reactive.Core.3.0.0.nupkg.sha512",
+        "System.Reactive.Core.nuspec",
+        "lib/net45/System.Reactive.Core.dll",
+        "lib/net45/System.Reactive.Core.xml",
+        "lib/net46/System.Reactive.Core.dll",
+        "lib/net46/System.Reactive.Core.xml",
+        "lib/netcore451/System.Reactive.Core.dll",
+        "lib/netcore451/System.Reactive.Core.xml",
+        "lib/netcoreapp1.0/System.Reactive.Core.dll",
+        "lib/netcoreapp1.0/System.Reactive.Core.xml",
+        "lib/netstandard1.0/System.Reactive.Core.dll",
+        "lib/netstandard1.0/System.Reactive.Core.xml",
+        "lib/netstandard1.1/System.Reactive.Core.dll",
+        "lib/netstandard1.1/System.Reactive.Core.xml",
+        "lib/netstandard1.3/System.Reactive.Core.dll",
+        "lib/netstandard1.3/System.Reactive.Core.xml",
+        "lib/uap10.0/System.Reactive.Core.dll",
+        "lib/uap10.0/System.Reactive.Core.xml",
+        "lib/wpa81/System.Reactive.Core.dll",
+        "lib/wpa81/System.Reactive.Core.xml"
+      ]
+    },
+    "System.Reactive.Interfaces/3.0.0": {
+      "sha512": "MuLvWYegIrhvUVe3MRMIBxFGx4kiz0FEzN3TTvhX+m3WmJCi5+OE4J7yPWtZjGGTUh5wysGyaF9thcnCzx/J3w==",
+      "type": "package",
+      "path": "System.Reactive.Interfaces/3.0.0",
+      "files": [
+        "System.Reactive.Interfaces.3.0.0.nupkg.sha512",
+        "System.Reactive.Interfaces.nuspec",
+        "lib/net45/System.Reactive.Interfaces.dll",
+        "lib/net45/System.Reactive.Interfaces.xml",
+        "lib/netstandard1.0/System.Reactive.Interfaces.dll",
+        "lib/netstandard1.0/System.Reactive.Interfaces.xml"
       ]
     },
     "System.Reflection/4.3.0": {
@@ -8167,7 +8261,8 @@
       "Microsoft.Owin >= 3.0.1",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Tools >= 1.0.0-preview2-final",
-      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 1.0.0-preview2-final"
+      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 1.0.0-preview2-final",
+      "StackifyMiddleware >= 2.0.3"
     ],
     ".NETFramework,Version=v4.6.1": []
   },

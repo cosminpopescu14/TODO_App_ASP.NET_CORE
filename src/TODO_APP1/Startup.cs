@@ -86,6 +86,7 @@ namespace TODO_APP1
                 AutomaticChallenge = true     
             });
 
+            app.UseMiddleware<StackifyMiddleware.RequestTracerMiddleware>();//
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

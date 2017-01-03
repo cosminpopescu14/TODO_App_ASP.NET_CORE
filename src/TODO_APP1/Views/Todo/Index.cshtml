@@ -7,14 +7,17 @@
 @model IEnumerable<TODO_APP1.Models.Todos>
 
 <head>
-<link rel="stylesheet" href="~/css/Todo.css" />
+<link  href="~/css/Todo.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="~/lib/jquery/dist/jquery.js" ></script>
 
 <!--import pentru componetele Polymer-->
 <script src="~/lib/webcomponentsjs/webcomponents.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 <link rel="import" href="~/lib/paper-card/paper-card.html" />
 <link rel="import" href="~/lib/paper-button/paper-button.html" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 </head>
+
 <!--<div class="task-list">
     <h3>Your tasks</h3>
 
@@ -29,11 +32,11 @@
 <div class="task-list">
     <h3>Add a task</h3>
     <form asp-controller = "Todo" asp-action="AddTodo" method="post">
-        <input type="text" placeholder="Title" name="Title" /> <br>
-        <textarea placeholder="Descrtipion" name="Description"></textarea><br>
-        <input type="text" placeholder="Start Date (dd/mm/yyyy)" name="Start"/><br>
-        <input type="text" placeholder="Due Date (dd/mm/yyyy)" name="End"/><br>
-        <button type="submit" class="btn btn-lg" id="submitBtn">Add your todo !</button>
+        <input type="text" placeholder="Title" name="Title" class="input-field col s12" /> <br>
+        <textarea placeholder="Descrtipion" name="Description" class="input-field col s12" ></textarea><br>
+        <input type="text" placeholder="Start Date (dd/mm/yyyy)" name="Start" class="input-field col s12"/><br>
+        <input type="text" placeholder="Due Date (dd/mm/yyyy)" name="End" class="input-field col s12"/><br>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Add your todo !</button>
     </form>
 </div>
 <style is="custom-style" include="demo-pages-shared-styles">
@@ -50,7 +53,19 @@
     }
 </style>
 
+<style>
+    .task-list {
+  width: 250px;
+  float: right;
+  margin: 0 5px;
+  background-color: rgba(168, 197, 210, 0);
+  min-height: 240px;
+  border-radius: 10px;
+  padding-bottom: 15px;
+}
 
+
+</style>
 @foreach (var item in Model)
 {   
     <paper-card>
