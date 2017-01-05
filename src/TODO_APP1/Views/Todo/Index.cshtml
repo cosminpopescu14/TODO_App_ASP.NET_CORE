@@ -13,6 +13,9 @@
 <!--import pentru componetele Polymer-->
 <script src="~/lib/webcomponentsjs/webcomponents.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
 <link rel="import" href="~/lib/paper-card/paper-card.html" />
 <link rel="import" href="~/lib/paper-button/paper-button.html" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
@@ -36,7 +39,7 @@
         <textarea placeholder="Descrtipion" name="Description" class="input-field col s12" ></textarea><br>
         <input type="text" placeholder="Start Date (dd/mm/yyyy)" name="Start" class="input-field col s12"/><br>
         <input type="text" placeholder="Due Date (dd/mm/yyyy)" name="End" class="input-field col s12"/><br>
-        <button type="submit" class="btn btn-primary" id="submitBtn">Add your todo !</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn" onclick="CheckInput()">Add your todo !</button>
     </form>
 </div>
 <style is="custom-style" include="demo-pages-shared-styles">
@@ -100,6 +103,14 @@
                 document.getElementById("task-date").innerHTML = start + "<br> " + end;
             }
         });
+    }
+
+    function CheckInput() {
+        if (document.getElementsByName("Description").length == 0)
+            alert("Please provide a descriprion for your todo !");
+
+        else
+            return true;
     }
 </script>
 <a href="/Users/LogOff">

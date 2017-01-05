@@ -31,7 +31,9 @@ namespace TODO_APP1.Controllers
                         StartDate = todo.StartDate,
                         EndDate = todo.EndDate
                     });*/
-                    string sqlQuery = @"select t.id, t.Title, t.Description, t.StartDate, t.EndDate
+                    string sqlQuery = @"select t.id, t.Title, t.Description, 
+                                        convert(date, t.StartDate, 3) as StartDate,
+                                        convert(date, t.EndDate, 3) as EndDate
                                         from TODOS t
                                         join UsersTodos ut on t.id = ut.TodoId
                                         join Users u on u.id = ut.UserId
@@ -57,7 +59,7 @@ namespace TODO_APP1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult AddTodo(DTOTodo _todo)
+        public async Task<ActionResult> AddTodo(DTOTodo _todo)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +74,7 @@ namespace TODO_APP1.Controllers
                     };
 
                     Users user = new Users();
-                    todoContext.Add(todo);//insert in database
+                    await todoContext.AddAsync(todo); //insert in database
                     todoContext.SaveChanges();                   
                 }
                 catch (Exception ex)
@@ -84,9 +86,9 @@ namespace TODO_APP1.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
-        [HttpGet]
-        public ActionResult GetTodos()
+        //[Authorize]
+        //[HttpGet]
+        /*public ActionResult GetTodos()
         {
             if (ModelState.IsValid)
             {
@@ -111,6 +113,6 @@ namespace TODO_APP1.Controllers
                 ModelState.AddModelError("1", "error ocurred :(");
 
             return RedirectToAction("Index");
-        }
+        }*/
     }
 }

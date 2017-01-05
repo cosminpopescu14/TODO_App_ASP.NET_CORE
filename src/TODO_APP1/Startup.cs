@@ -77,6 +77,18 @@ namespace TODO_APP1
 
             app.UseApplicationInsightsRequestTelemetry();
 
+            //here I redirect a user to an error page if he/she tries to enter an invalid address 
+            //for exemple: /Todos/GetTodos
+            app.Use(async (conetxt, next) =>
+            {
+                await next();
+                if (conetxt.Response.StatusCode == 404)
+                {
+                    conetxt.Request.Path = "/Home/Error";
+                    await next();
+                }
+            });
+
             //setting up cookie middleware
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
