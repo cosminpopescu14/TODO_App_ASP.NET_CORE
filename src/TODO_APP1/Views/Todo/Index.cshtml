@@ -37,8 +37,8 @@
     <form asp-controller = "Todo" asp-action="AddTodo" method="post">
         <input type="text" placeholder="Title" name="Title" class="input-field col s12" /> <br>
         <textarea placeholder="Descrtipion" name="Description" class="input-field col s12" ></textarea><br>
-        <input type="text" placeholder="Start Date (dd/mm/yyyy)" name="Start" class="input-field col s12"/><br>
-        <input type="text" placeholder="Due Date (dd/mm/yyyy)" name="End" class="input-field col s12"/><br>
+        <input type="date" placeholder="Start Date (dd/mm/yyyy)" name="Start" class="input-field col s12"/><br>
+        <input type="date" placeholder="Due Date (dd/mm/yyyy)" name="End" class="input-field col s12"/><br>
         <button type="submit" class="btn btn-primary" id="submitBtn" onclick="CheckInput()">Add your todo !</button>
     </form>
 </div>
