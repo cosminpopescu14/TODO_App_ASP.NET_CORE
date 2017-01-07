@@ -9,6 +9,8 @@ using TODO_APP1.DTO;
 using TODO_APP1.Models;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TODO_APP1.Controllers
 {
@@ -72,10 +74,10 @@ namespace TODO_APP1.Controllers
                         StartDate = _todo.Start,
                         EndDate = _todo.End
                     };
-
-                    Users user = new Users();
                     await todoContext.AddAsync(todo); //insert in database
-                    todoContext.SaveChanges();                   
+                    todoContext.SaveChanges();
+
+                    AddUserTodo();                 
                 }
                 catch (Exception ex)
                 {
@@ -84,6 +86,40 @@ namespace TODO_APP1.Controllers
                 }
             }
             return RedirectToAction("Index");
+        }
+
+        public void AddUserTodo()
+        {
+            try
+            {
+                string sqlQueryForUserId = @"select *
+                                from Users u
+                                where u.UserName = " +
+                                "'" + User.Claims.FirstOrDefault().Value + "'";
+
+                var idOfCurentUser = todoContext.Users
+                    .FromSql(sqlQueryForUserId)
+                    .ToList();
+                int getId = idOfCurentUser.ToList().FirstOrDefault().Id;
+
+                string sqlQueryForLastTodoId = @"select top 1 *
+                                             from TODOS t
+                                             order by t.id desc";
+
+                var idOfTodo = todoContext.Todos
+                    .FromSql(sqlQueryForLastTodoId)
+                    .ToList();
+                int getTodoId = idOfTodo.FirstOrDefault().Id;
+
+                //todoContext.Database.ExecuteSqlCommand("uspAddInUserTodos @UserId, @TodoId", parameters: new[] { getId, getTodoId });
+                var x = todoContext.UsersTodo
+                    .FromSql("EXECUTE uspAddInUserTodos {0}, {1}", getId, getTodoId)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }           
         }
 
         //[Authorize]

@@ -2,20 +2,22 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@model IEnumerable<TODO_APP1.Models.Todos>
+@model IEnumerable<TODO_APP1.Models.Users>
 @{
     ViewBag.Title = "Todos";
 }
 <script src="~/lib/webcomponentsjs/webcomponents.js"></script>
 <link rel="import" href="~/lib/paper-card/paper-card.html" />
 
-<h2>Blogs</h2>
+<h2>Tests</h2>
+
+<p> This is a test page ! </p>
 
     @foreach (var item in Model)
     {       
         <paper-card heading ="Todo">
-            <div class="card-content">@Html.DisplayFor(modelItem => item.Title)</div>
-            <div class="card-content">@Html.DisplayFor(modelItem => item.Description)</div>
+            <div class="card-content">@Html.DisplayFor(modelItem => item.Id)</div>
+            <div class="card-content">@Html.DisplayFor(modelItem => item.Email)</div>
             <div class="card-actions">
                 <paper-button>Done !</paper-button>
             </div>
