@@ -72,13 +72,14 @@
 @foreach (var item in Model)
 {   
     <paper-card>
-        <div class="card-content">@Html.DisplayFor(modelItem => item.Title)</div>
-        <div class="card-content">@Html.DisplayFor(modelItem => item.Description)</div>
-        <div class="card-content">@Html.DisplayFor(modelItem => item.StartDate)</div>
-        <div class="card-content">@Html.DisplayFor(modelItem => item.EndDate)</div>
+        <div class="card-content" id="title">@Html.DisplayFor(modelItem => item.Title)</div>
+        <div class="card-content" id="description">@Html.DisplayFor(modelItem => item.Description)</div>
+        <div class="card-content" id="start">@Html.DisplayFor(modelItem => item.StartDate)</div>
+        <div class="card-content" id="end">@Html.DisplayFor(modelItem => item.EndDate)</div>
 
         <div class="card-actions">
             <paper-button>Done !</paper-button>
+            <paper-button onclick="DeleteTodo()">Delete !</paper-button>
         </div>
     </paper-card>
 }
@@ -112,7 +113,27 @@
         else
             return true;
     }
+
+    function DeleteTodo() {
+        //var todoName = JSON.stringify({ Title: $(".card-content").val() });
+
+        $.ajax({
+            method: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: "http://localhost:58193/Todo/DeleteTodo",
+            success: function (result) {
+                alert(result);
+
+            }
+        });
+
+    }
 </script>
 <a href="/Users/LogOff">
     <paper-button raised>LogOut</paper-button>
 </a>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

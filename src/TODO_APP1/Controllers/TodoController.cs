@@ -11,12 +11,20 @@ using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Logging;
+using TODO_APP1.Utils;
 
 namespace TODO_APP1.Controllers
 {
     public class TodoController : Controller
     {
         private TODO_AppContext todoContext = new TODO_AppContext();
+        private readonly ILogger _logger;
+
+        public TodoController(ILogger<TodoController> logger)
+        {
+            this._logger = logger;
+        }
 
         [Authorize]
         [HttpGet]
@@ -85,6 +93,14 @@ namespace TODO_APP1.Controllers
                     throw ex;
                 }
             }
+            else
+            {
+                var message = string.Join(" | ", ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage));
+
+                _logger.LogError(LoggingEvents.MODEL_ERROR, "Model error", message);
+            }
             return RedirectToAction("Index");
         }
 
@@ -93,9 +109,9 @@ namespace TODO_APP1.Controllers
             try
             {
                 string sqlQueryForUserId = @"select *
-                                from Users u
-                                where u.UserName = " +
-                                "'" + User.Claims.FirstOrDefault().Value + "'";
+                                             from Users u
+                                             where u.UserName = " +
+                                             "'" + User.Claims.FirstOrDefault().Value + "'";
 
                 var idOfCurentUser = todoContext.Users
                     .FromSql(sqlQueryForUserId)
@@ -103,15 +119,15 @@ namespace TODO_APP1.Controllers
                 int getId = idOfCurentUser.ToList().FirstOrDefault().Id;
 
                 string sqlQueryForLastTodoId = @"select top 1 *
-                                             from TODOS t
-                                             order by t.id desc";
+                                                from TODOS t
+                                                order by t.id desc";
 
                 var idOfTodo = todoContext.Todos
                     .FromSql(sqlQueryForLastTodoId)
                     .ToList();
                 int getTodoId = idOfTodo.FirstOrDefault().Id;
 
-                //todoContext.Database.ExecuteSqlCommand("uspAddInUserTodos @UserId, @TodoId", parameters: new[] { getId, getTodoId });
+                //todoContext.Database.ExecuteSqlCommand("uspAddInUserTodos @UserId, @TodoId", parameters: new SqlParameter[] {"@UserId", getId });
                 var x = todoContext.UsersTodo
                     .FromSql("EXECUTE uspAddInUserTodos {0}, {1}", getId, getTodoId)
                     .ToList();
@@ -120,6 +136,13 @@ namespace TODO_APP1.Controllers
             {
                 throw ex;
             }           
+        }
+
+        //[Authorize]
+        [HttpGet]
+        public ActionResult DeleteTodo()
+        {
+            return Json("I should remove a todo from database");
         }
 
         //[Authorize]
