@@ -39,6 +39,8 @@ namespace TODO_APP1.Models
                 entity.Property(e => e.StartDate).HasColumnType("date");
 
                 entity.Property(e => e.Title).HasColumnType("varchar(100)");
+
+                entity.Property(e => e.IsDone).HasColumnType("bit");
             });
 
             modelBuilder.Entity<Users>(entity =>

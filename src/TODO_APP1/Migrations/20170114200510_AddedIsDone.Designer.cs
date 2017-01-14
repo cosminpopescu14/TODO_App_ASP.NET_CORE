@@ -8,9 +8,10 @@ using TODO_APP1.Models;
 namespace TODO_APP1.Migrations
 {
     [DbContext(typeof(TODO_AppContext))]
-    partial class TODO_AppContextModelSnapshot : ModelSnapshot
+    [Migration("20170114200510_AddedIsDone")]
+    partial class AddedIsDone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")

@@ -15,6 +15,7 @@ namespace TODO_APP1.Models
         public string Description { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public bool? IsDone { get; set; }
 
         public virtual ICollection<Users> Users { get; set; }
         public List<UsersTodos> UsersTodos { get; set; }

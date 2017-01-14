@@ -99,7 +99,7 @@ namespace TODO_APP1.Controllers
                     .SelectMany(v => v.Errors)
                     .Select(e => e.ErrorMessage));
 
-                _logger.LogError(LoggingEvents.MODEL_ERROR, "Model error", message);
+                _logger.LogError(LoggingEvents.MODEL_ERROR, message);
             }
             return RedirectToAction("Index");
         }

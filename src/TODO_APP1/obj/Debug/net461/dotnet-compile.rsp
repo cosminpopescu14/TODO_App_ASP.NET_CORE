@@ -243,6 +243,8 @@ C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODO_App_ASP.NET_CORE-maste
 C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODO_App_ASP.NET_CORE-master\src\TODO_APP1\DTO\DTOUser.cs
 C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODO_App_ASP.NET_CORE-master\src\TODO_APP1\Migrations\20161130202409_30112016.cs
 C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODO_App_ASP.NET_CORE-master\src\TODO_APP1\Migrations\20161130202409_30112016.Designer.cs
+C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODO_App_ASP.NET_CORE-master\src\TODO_APP1\Migrations\20170114200510_AddedIsDone.cs
+C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODO_App_ASP.NET_CORE-master\src\TODO_APP1\Migrations\20170114200510_AddedIsDone.Designer.cs
 C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODO_App_ASP.NET_CORE-master\src\TODO_APP1\Migrations\TODO_AppContextModelSnapshot.cs
 C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODO_App_ASP.NET_CORE-master\src\TODO_APP1\Models\ApplicationUser.cs
 C:\Users\cosmi\Documents\Visual Studio 2015\Projects\TODO_App_ASP.NET_CORE-master\src\TODO_APP1\Models\Todos.cs
