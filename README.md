@@ -1,5 +1,5 @@
 # TODO_App_ASP.NET_CORE
-O aplicatie web simpla folosind care foloseste ASP.NET Core
+O aplicatie web simpla care foloseste ASP.NET Core
 
 
 Istoric dezvoltare aplicatie
