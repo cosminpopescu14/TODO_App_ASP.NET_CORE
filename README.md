@@ -4,6 +4,7 @@ O aplicatie web simple folosind care foloseste ASP.NET Core
 
 Istoric dezvoltare aplicatie
 =======
+14.1.2017 - am adaugat coloana IsDone in baza de date, tip bool<br>
 12.1.2017 - am adugat un logger(Controllers/TodoController)<br>
 6.1.2017 - Date picker pt selectia date in Views/Todo/Index <br>
 5.1.2017 - Datorita unui merge conflict :D, instructiunile au disparut. Vor fi adaugate si vor fi mult mai explicite :) <br>
