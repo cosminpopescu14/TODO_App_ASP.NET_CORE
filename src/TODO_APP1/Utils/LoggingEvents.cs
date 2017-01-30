@@ -8,5 +8,6 @@ namespace TODO_APP1.Utils
     public class LoggingEvents
     {
         public const int MODEL_ERROR = 1;
+        public const int SERVER_ERROR = 2;
     }
 }

@@ -7,6 +7,7 @@
     ViewBag.Title = "Todos";
 }
 <script src="~/lib/webcomponentsjs/webcomponents.js"></script>
+<link rel="import" href="~/lib/iron-ajax/iron-ajax.html" />
 <link rel="import" href="~/lib/paper-card/paper-card.html" />
 
 <h2>Tests</h2>
@@ -23,3 +24,7 @@
             </div>
        </paper-card>       
     }
+<script>
+    var x = document.getElementsByClassName("card-content");
+    alert(x.toString);
+</script>

@@ -14,5 +14,6 @@ namespace TODO_APP1.DTO
         public string Description { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
+        public bool isDone { get; set; }
     }
 }

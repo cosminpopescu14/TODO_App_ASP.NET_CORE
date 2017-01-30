@@ -41,7 +41,7 @@ namespace TODO_APP1.Controllers
                         StartDate = todo.StartDate,
                         EndDate = todo.EndDate
                     });*/
-                    string sqlQuery = @"select t.id, t.Title, t.Description, 
+                    string sqlQuery = @"select t.id, t.Title, t.Description, t.IsDone, --actually we don't need this column
                                         convert(date, t.StartDate, 3) as StartDate,
                                         convert(date, t.EndDate, 3) as EndDate
                                         from TODOS t
@@ -139,10 +139,32 @@ namespace TODO_APP1.Controllers
         }
 
         //[Authorize]
-        [HttpGet]
-        public ActionResult DeleteTodo()
+        [HttpPost]
+        public ActionResult DeleteTodo(DTOTodo t)
         {
-            return Json("I should remove a todo from database");
+            //return Json("I should remove a todo from database !" + t.Title);
+            return Ok("I should remove a todo from database !" + t.Title);
+        }
+
+        //[Authorize]
+        [HttpPost]
+        public ActionResult MarkTodoAsDone([Bind(include: "Title")] DTOTodo todo)
+        {
+            //var todo1 = new Todos() { IsDone = true };
+            try
+            {
+                using (todoContext)
+                {
+                    todoContext.Database.ExecuteSqlCommand("uspMarkTodoAsDone @p0", parameters: new[] { todo.Title});
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
+            return Json("I should mark this todo as Done !" + todo.Title);
         }
 
         //[Authorize]
