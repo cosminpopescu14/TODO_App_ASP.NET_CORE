@@ -4,7 +4,7 @@ O aplicatie web simpla care foloseste ASP.NET Core
 
 Istoric dezvoltare aplicatie
 =======
-12.2.2017 - modificare logica de afisare a todo-urilor. elementul iron-ajax 
+12.2.2017 - modificare logica de afisare a todo-urilor. elementul iron-ajax <br>
 14.1.2017 - am adaugat coloana IsDone in baza de date, tip bool<br>
 12.1.2017 - am adugat un logger(Controllers/TodoController)<br>
 6.1.2017 - Date picker pt selectia date in Views/Todo/Index <br>
