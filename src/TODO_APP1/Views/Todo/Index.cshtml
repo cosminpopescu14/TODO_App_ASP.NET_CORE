@@ -18,6 +18,9 @@
 
 <link rel="import" href="~/lib/paper-card/paper-card.html" />
 <link rel="import" href="~/lib/paper-button/paper-button.html" />
+<link rel="import" href="~/lib/iron-ajax/iron-ajax.html">
+<!--link rel="import" href="../../iron-image/iron-image.html">
+<link rel="import" href="../../paper-styles/demo-pages.html">-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 </head>
 
@@ -69,73 +72,101 @@
 
 
 </style>
-@foreach (var item in Model)
-{   
-    <paper-card>
-        
-        <div class="card-content" id="title">@Html.DisplayFor(modelItem => item.Title)</div>
-        <div class="card-content">@Html.DisplayFor(modelItem => item.Description)</div>
-        <div class="card-content">@Html.DisplayFor(modelItem => item.StartDate)</div>
-        <div class="card-content">@Html.DisplayFor(modelItem => item.EndDate)</div>
-        
-        <div class="card-actions">
-            <paper-button onclick="MarkAsDone()">Done !</paper-button>
-            <paper-button onclick="DeleteTodo()">Delete !</paper-button>
-        </div>
-    </paper-card>
-}
-<br>
-<script>
-    function GetTodos() {
-        $.ajax({
-            url: 'http://localhost:58193/Todo/GetTodos',
-            error: function () {
-                alert("couldn't fetch any todo");
 
-            },
-            contentType: 'json',
-            success: function (data) {
-                var title = JSON.stringify(data[0]["title"]);
-                var description = JSON.stringify(data[0]["description"]);
-                var start = JSON.stringify(data[0]["startDate"]);
-                var end = JSON.stringify(data[0]["endDate"]);
-                //console.log(title, description, start);
-                document.getElementById("task-header").innerHTML = "Title " + title;
-                document.getElementById("task-description").innerHTML = "Description " + description;
-                document.getElementById("task-date").innerHTML = start + "<br> " + end;
-            }
-        });
-    }
+<template is="dom-bind">
+    <iron-ajax auto
+               url="http://localhost:58193/Todo/GetTodos"
+               last-response="{{data}}"
+               handleAs="json">
+    </iron-ajax>
 
-    function CheckInput() {
-        if (document.getElementsByName("Description").length == 0)
-            alert("Please provide a descriprion for your todo !");
+    <template is="dom-repeat" items="{{data}}">
+        <paper-card>
 
-        else
-            return true;
-    }
+            <div class="card-content" id="title">{{item.title}}</div>
+            <div class="card-content">{{item.description}}</div>
+            <div class="card-content">{{item.startDate}}</div>
+            <div class="card-content">{{item.endDate}}</div>
 
-    function DeleteTodo() {
-        var todoName = JSON.stringify({ Title: $("#title").text() });//asa citim continutul cardului cu todo
-        alert(todoName);
-        $.ajax({
-            method: "POST",
-            //contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            url: "http://localhost:58193/Todo/DeleteTodo",
-            success: function (result) {
-                alert(result);
+            <div class="card-actions">
+                <paper-button>Done !</paper-button>
+                <paper-button>Delete !</paper-button>
+            </div>
+        </paper-card>
+    </template>
+</template>
 
-            }
-        });
 
-    }
 
-    function MarkAsDone() {
+    @*@foreach (var item in Model)
+        {
+            <paper-card>
 
-        var todo = { Title: $("#title").text()};
-        alert(JSON.stringify(todo));
-        //$.ajax({
+                <div class="card-content" id="title">@Html.DisplayFor(modelItem => item.Title)</div>
+                <div class="card-content">@Html.DisplayFor(modelItem => item.Description)</div>
+                <div class="card-content">@Html.DisplayFor(modelItem => item.StartDate)</div>
+                <div class="card-content">@Html.DisplayFor(modelItem => item.EndDate)</div>
+
+                <div class="card-actions">
+                    <paper-button onclick="MarkAsDone()">Done !</paper-button>
+                    <paper-button onclick="DeleteTodo()">Delete !</paper-button>
+                </div>
+            </paper-card>
+        }*@
+    <br>
+
+    <script>
+
+        function GetTodos() {
+            $.ajax({
+                url: 'http://localhost:58193/Todo/GetTodos',
+                error: function () {
+                    alert("couldn't fetch any todo");
+
+                },
+                contentType: 'json',
+                success: function (data) {
+                    var title = JSON.stringify(data[0]["title"]);
+                    var description = JSON.stringify(data[0]["description"]);
+                    var start = JSON.stringify(data[0]["startDate"]);
+                    var end = JSON.stringify(data[0]["endDate"]);
+                    //console.log(title, description, start);
+                    document.getElementById("task-header").innerHTML = "Title " + title;
+                    document.getElementById("task-description").innerHTML = "Description " + description;
+                    document.getElementById("task-date").innerHTML = start + "<br> " + end;
+                }
+            });
+        }
+
+        function CheckInput() {
+            if (document.getElementsByName("Description").length == 0)
+                alert("Please provide a descriprion for your todo !");
+
+            else
+                return true;
+        }
+
+        function DeleteTodo() {
+            var todoName = JSON.stringify({ Title: $("#title").text() });//asa citim continutul cardului cu todo
+            alert(todoName);
+            $.ajax({
+                method: "POST",
+                //contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "http://localhost:58193/Todo/DeleteTodo",
+                success: function (result) {
+                    alert(result);
+
+                }
+            });
+
+        }
+
+        function MarkAsDone() {
+
+            var todo = { Title: $("#title").text() };
+            alert(JSON.stringify(todo));
+            //$.ajax({
             //method: "POST",
             //dataType: "json",
             //url: "http://localhost:58193/Todo/MarkTodoAsDone",
@@ -144,13 +175,13 @@
                 alert(res);
 
             }*/
-        //});
-    }
-</script>
-<a href="/Users/LogOff">
-    <paper-button raised>LogOut</paper-button>
-</a>
+            //});
+        }
+    </script>
+    <a href="/Users/LogOff">
+        <paper-button raised>LogOut</paper-button>
+    </a>
 
-@section Scripts{
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts{
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

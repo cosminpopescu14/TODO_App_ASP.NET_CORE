@@ -30,39 +30,6 @@ namespace TODO_APP1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    /*var todos = todoContext.Todos.Select(todo => new Todos
-                    {
-                        Title = todo.Title,
-                        Description = todo.Description,
-                        StartDate = todo.StartDate,
-                        EndDate = todo.EndDate
-                    });*/
-                    string sqlQuery = @"select t.id, t.Title, t.Description, t.IsDone, --actually we don't need this column
-                                        convert(date, t.StartDate, 3) as StartDate,
-                                        convert(date, t.EndDate, 3) as EndDate
-                                        from TODOS t
-                                        join UsersTodos ut on t.id = ut.TodoId
-                                        join Users u on u.id = ut.UserId
-                                        where u.UserName =  " + "'" + User.Claims.FirstOrDefault().Value + "'";
-
-                    var todos = todoContext.Todos
-                        .FromSql(sqlQuery)
-                        .ToList();
-
-                    return View(todos.ToList());
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-            else
-                ModelState.AddModelError("1", "error ocurred :(");
-
             return View();
         }
 
@@ -127,8 +94,8 @@ namespace TODO_APP1.Controllers
                     .ToList();
                 int getTodoId = idOfTodo.FirstOrDefault().Id;
 
-                //todoContext.Database.ExecuteSqlCommand("uspAddInUserTodos @UserId, @TodoId", parameters: new SqlParameter[] {"@UserId", getId });
-                var x = todoContext.UsersTodo
+                //todoContext.Database.ExecuteSqlCommand("uspAddInUserTodos @p0, @p1", parameters: new[] {getId, getTodoId });
+                todoContext.UsersTodo
                     .FromSql("EXECUTE uspAddInUserTodos {0}, {1}", getId, getTodoId)
                     .ToList();
             }
@@ -138,7 +105,7 @@ namespace TODO_APP1.Controllers
             }           
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public ActionResult DeleteTodo(DTOTodo t)
         {
@@ -146,7 +113,7 @@ namespace TODO_APP1.Controllers
             return Ok("I should remove a todo from database !" + t.Title);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public ActionResult MarkTodoAsDone([Bind(include: "Title")] DTOTodo todo)
         {
@@ -164,12 +131,52 @@ namespace TODO_APP1.Controllers
                 throw ex;
             }
            
-            return Json("I should mark this todo as Done !" + todo.Title);
+            return Json("Done !" + todo.Title);
         }
 
-        //[Authorize]
+        [Authorize]
+        [HttpGet]
+        public IActionResult GetTodos()
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    /*var todos = todoContext.Todos.Select(todo => new Todos
+                    {
+                        Title = todo.Title,
+                        Description = todo.Description,
+                        StartDate = todo.StartDate,
+                        EndDate = todo.EndDate
+                    });*/
+                    string sqlQuery = @"select t.id, t.Title, t.Description, t.IsDone, --actually we don't need this column
+                                        convert(date, t.StartDate, 3) as StartDate,
+                                        convert(date, t.EndDate, 3) as EndDate
+                                        from TODOS t
+                                        join UsersTodos ut on t.id = ut.TodoId
+                                        join Users u on u.id = ut.UserId
+                                        where u.UserName =  " + "'" + User.Claims.FirstOrDefault().Value + "'";
+
+                    var todos = todoContext.Todos
+                        .FromSql(sqlQuery)
+                        .ToList();
+
+                    return Json(todos.ToList());
+                }
+                catch (Exception ex)
+                {
+                    Json(ex);
+                }
+            }
+            else
+                ModelState.AddModelError("1", "error ocurred :(");
+
+            return Index();
+        }
+
         //[HttpGet]
-        /*public ActionResult GetTodos()
+        //[EnableCors("AllowSpecificOrigin")]
+       /* public ActionResult GetTodos()
         {
             if (ModelState.IsValid)
             {

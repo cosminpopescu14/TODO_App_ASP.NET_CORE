@@ -9,22 +9,59 @@
 <script src="~/lib/webcomponentsjs/webcomponents.js"></script>
 <link rel="import" href="~/lib/iron-ajax/iron-ajax.html" />
 <link rel="import" href="~/lib/paper-card/paper-card.html" />
-
-<h2>Tests</h2>
-
-<p> This is a test page ! </p>
-
+<link rel="import" href="~/lib/iron-image/iron-image.html">
+<link rel="import" href="~/lib/paper-styles/demo-pages.html">
+<body class="unresolved">
+    <h2>Tests</h2>
+    <p> This is a test page ! </p>
     @foreach (var item in Model)
-    {       
-        <paper-card heading ="Todo">
+    {
+        <paper-card heading="Todo">
             <div class="card-content">@Html.DisplayFor(modelItem => item.Id)</div>
             <div class="card-content">@Html.DisplayFor(modelItem => item.Email)</div>
             <div class="card-actions">
                 <paper-button>Done !</paper-button>
             </div>
-       </paper-card>       
+        </paper-card>
     }
-<script>
-    var x = document.getElementsByClassName("card-content");
-    alert(x.toString);
-</script>
+    <script>
+        var x = document.getElementsByClassName("card-content");
+        alert(x.toString);
+    </script>
+
+    <h1>Video Feed</h1>
+    <template is="dom-bind">
+
+        <iron-ajax auto
+                   url="http://localhost:58193/Todo/GetTodos"
+                   last-response="{{data}}"
+                   handleAs="json">
+        </iron-ajax>
+
+        <template is="dom-repeat" items="{{data}}">
+            <paper-card elevation="1">
+                <div class="header">{{item.title}}</div>
+                <div class="body">{{item.description}}</div>
+            </paper-card>
+        </template>
+
+    </template>
+
+    <script>
+    /*(function (document) {
+        'use strict';
+
+        var app = document.querySelector('#app');
+
+        window.addEventListener('WebComponentsReady', function() {
+            var ironAjax = document.querySelector('iron-ajax');
+            ironAjax.addEventListener('response', function() {
+                console.log(ironAjax.lastResponse[0].id);
+            });
+            ironAjax.generateRequest();
+        });
+
+    })(document);*/
+
+    </script>
+</body>
